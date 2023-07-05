@@ -1,14 +1,21 @@
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.8.21"
-    id("org.jetbrains.intellij") version "1.13.3"
+    id("org.jetbrains.intellij") version "1.14.2"
 }
 
 group = "org.yaoqiang"
-version = "1.0-SNAPSHOT"
+version = "3.0.0"
 
 repositories {
     mavenCentral()
+    flatDir {
+        dirs ("libs")
+    }
+}
+
+dependencies {
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 }
 
 // Configure Gradle IntelliJ Plugin
