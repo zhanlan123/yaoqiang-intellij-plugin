@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-
+@Deprecated
 public class NewBPMNFileAction extends CreateFromTemplateAction {
 
     private static final String INTERNAL_TEMPLATE_NAME = "BPMN 2.0 XML File.bpmn";
