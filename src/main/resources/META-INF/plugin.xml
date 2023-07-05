@@ -28,6 +28,16 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
+        <fileType name="BPMN" implementationClass="org.yaoqiang.intellij.lang.BPMNFileType" fieldName="INSTANCE" language="BPMN" extensions="bpmn"/>
 
     </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="yaoqiang.actions.NewBPMNFileAction" class="org.yaoqiang.intellij.actions.NewBPMNFileAction"
+                text="BPMN 2.0 XML File" description="OMG BPMN 2.0 XML File">
+            <add-to-group group-id="NewXml" anchor="before" relative-to-action="NewHtmlFile"/>
+        </action>
+    </actions>
+
 </idea-plugin>
