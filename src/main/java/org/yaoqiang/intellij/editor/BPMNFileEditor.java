@@ -24,7 +24,7 @@ public class BPMNFileEditor extends UserDataHolderBase implements FileEditor {
     }
 
     @Override
-    public @NotNull JComponent getComponent() {
+    public @NotNull BPMNEditorDiagramTab getComponent() {
         return editor;
     }
 

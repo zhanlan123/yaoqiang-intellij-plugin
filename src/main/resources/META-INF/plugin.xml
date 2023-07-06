@@ -36,7 +36,6 @@
 
         <lang.psiStructureViewFactory language="BPMN" implementationClass="com.intellij.lang.xml.XmlStructureViewBuilderFactory"/>
         <xmlStructureViewBuilderProvider implementation="org.yaoqiang.intellij.lang.BPMNStructureViewBuilderProvider"/>
-
     </extensions>
 
     <actions>
@@ -50,5 +49,10 @@
             <add-to-group group-id="MainMenu" anchor="before" relative-to-action="ViewMenu"/>
         </group>
     </actions>
+
+    <applicationListeners>
+        <listener class="org.yaoqiang.intellij.BPMNEditor$LifecycleListener"
+                  topic="com.intellij.ide.AppLifecycleListener"/>
+    </applicationListeners>
 
 </idea-plugin>
