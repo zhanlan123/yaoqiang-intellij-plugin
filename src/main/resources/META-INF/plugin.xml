@@ -30,6 +30,8 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="BPMN" implementationClass="org.yaoqiang.intellij.lang.BPMNFileType" fieldName="INSTANCE" language="BPMN" extensions="bpmn"/>
 
+        <fileEditorProvider implementation="org.yaoqiang.intellij.editor.BPMNFileEditorProvider"/>
+
         <lang.syntaxHighlighterFactory language="BPMN" implementationClass="com.intellij.lang.xml.XmlSyntaxHighlighterFactory"/>
 
         <lang.psiStructureViewFactory language="BPMN" implementationClass="com.intellij.lang.xml.XmlStructureViewBuilderFactory"/>
