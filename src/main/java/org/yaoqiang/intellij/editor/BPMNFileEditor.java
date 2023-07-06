@@ -3,7 +3,7 @@ package org.yaoqiang.intellij.editor;
 import com.intellij.openapi.fileEditor.FileEditor;
 import com.intellij.openapi.fileEditor.FileEditorState;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Key;
+import com.intellij.openapi.util.UserDataHolderBase;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 import java.beans.PropertyChangeListener;
 
-public class BPMNFileEditor implements FileEditor {
+public class BPMNFileEditor extends UserDataHolderBase implements FileEditor {
 
     @NotNull protected final VirtualFile myFile;
 
@@ -74,13 +74,4 @@ public class BPMNFileEditor implements FileEditor {
 
     }
 
-    @Override
-    public <T> @Nullable T getUserData(@NotNull Key<T> key) {
-        return null;
-    }
-
-    @Override
-    public <T> void putUserData(@NotNull Key<T> key, @Nullable T value) {
-
-    }
 }
