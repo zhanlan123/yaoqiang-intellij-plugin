@@ -58,7 +58,9 @@ public class CreateBPMNFileAction extends CreateFileFromTemplateAction {
                                                  @NotNull PsiDirectory dir,
                                                  @Nullable String defaultTemplateProperty,
                                                  boolean openFile) {
-        return createFileFromTemplate(name, template, dir, defaultTemplateProperty, openFile, getLiveTemplateDefaults());
+        PsiFile psiFile = createFileFromTemplate(name, template, dir, defaultTemplateProperty, openFile, getLiveTemplateDefaults());
+        psiFile.getVirtualFile().putUserData(NEW_CREATED, true);
+        return psiFile;
     }
 
     @Nullable

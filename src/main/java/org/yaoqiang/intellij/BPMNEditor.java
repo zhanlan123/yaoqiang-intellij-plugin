@@ -22,15 +22,21 @@ import com.intellij.openapi.actionSystem.ActionManager;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DefaultActionGroup;
+import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.fileEditor.*;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxUtils;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.yaoqiang.asaf.*;
 import org.yaoqiang.bpmn.editor.actions.BPMNEditorActions;
 import org.yaoqiang.bpmn.editor.menus.ModelMenu;
 import org.yaoqiang.bpmn.editor.utils.BPMNEditorUtils;
 import org.yaoqiang.graph.actions.GraphActions;
 import org.yaoqiang.graph.util.Constants;
+import org.yaoqiang.intellij.actions.CreateBPMNFileAction;
+import org.yaoqiang.intellij.editor.BPMNFileEditor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -181,6 +187,63 @@ public class BPMNEditor {
                 }
             }
         }
+    }
+
+    static final class BeforeFileEditorManagerListener implements FileEditorManagerListener.Before {
+
+        @Override
+        public void beforeFileClosed(@NotNull FileEditorManager source, @NotNull VirtualFile file) {
+            BPMNFileEditor editor = getBPMNFileEditor(source, file);
+            if (editor != null) {
+                editor.saveChanges();
+                editor.saveToFile();
+            }
+        }
+    }
+
+    static final class MyFileEditorManagerListener implements FileEditorManagerListener {
+
+        @Override
+        public void selectionChanged(@NotNull FileEditorManagerEvent event) {
+            if (event.getNewFile() == event.getOldFile()) {// switch inner editor tabs
+                Boolean newCreated = event.getNewFile().getUserData(CreateBPMNFileAction.NEW_CREATED);
+                if (newCreated == null || !newCreated) {
+                    if (event.getNewEditor() instanceof TextEditor) {
+                        BPMNFileEditor editor = getBPMNFileEditor(event.getManager(), event.getNewFile());
+                        if (editor != null) {
+                            editor.saveChanges();
+                        }
+                    }
+                } else {
+                    if (newCreated && !(event.getNewEditor() instanceof BPMNFileEditor)) {// switch back to Diagram tab for new file
+                        event.getNewFile().putUserData(CreateBPMNFileAction.NEW_CREATED, false);
+                        ApplicationManager.getApplication().invokeLater(() -> setBPMNFileEditor(event.getManager(), event.getNewFile()));// wait for template variables set completed
+                    }
+                }
+            } else if (event.getNewFile() != null) {
+                if (event.getNewEditor() instanceof BPMNFileEditor) {// switched to bpmn file
+                    ASAF.setSelectedFileTab(((BPMNFileEditor) event.getNewEditor()).getComponent().getFileTab());
+                } else {// switched to other type file
+                    ASAF.setSelectedFileTab(null);
+                }
+            }
+        }
+
+    }
+
+    private static void setBPMNFileEditor(@NotNull FileEditorManager manager, @NotNull VirtualFile file) {
+        manager.setSelectedEditor(file, "bpmn-editor");
+    }
+
+    @Nullable
+    private static BPMNFileEditor getBPMNFileEditor(@NotNull FileEditorManager manager, @NotNull VirtualFile file) {
+        for (FileEditor editor : manager.getAllEditors(file)) {
+            if (editor instanceof BPMNFileEditor) {
+                return (BPMNFileEditor) editor;
+            }
+        }
+
+        return null;
     }
 
 }

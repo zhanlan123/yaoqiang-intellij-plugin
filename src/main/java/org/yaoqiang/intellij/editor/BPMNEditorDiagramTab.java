@@ -17,6 +17,7 @@ import org.yaoqiang.bpmn.editor.actions.AboutYaoqiangAction;
 import org.yaoqiang.bpmn.editor.actions.SaveAsPNGAction;
 import org.yaoqiang.bpmn.editor.actions.SaveAsSVGAction;
 import org.yaoqiang.bpmn.editor.views.BPMNFileTab;
+import org.yaoqiang.bpmn.graph.view.BPMNGraph;
 import org.yaoqiang.graph.swing.StyleToolBar;
 
 public class BPMNEditorDiagramTab extends JPanel {
@@ -110,6 +111,15 @@ public class BPMNEditorDiagramTab extends JPanel {
                 fileTab.getGraphComponent().zoomAndCenter();
             }
         });
+    }
+
+    public BPMNGraph getGraph() {
+        return fileTab.getGraph();
+    }
+
+    @NotNull
+    public BPMNFileTab getFileTab() {
+        return fileTab;
     }
 
 }

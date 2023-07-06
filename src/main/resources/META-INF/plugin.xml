@@ -55,4 +55,11 @@
                   topic="com.intellij.ide.AppLifecycleListener"/>
     </applicationListeners>
 
+    <projectListeners>
+        <listener class="org.yaoqiang.intellij.BPMNEditor$BeforeFileEditorManagerListener"
+                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener$Before"/>
+        <listener class="org.yaoqiang.intellij.BPMNEditor$MyFileEditorManagerListener"
+                  topic="com.intellij.openapi.fileEditor.FileEditorManagerListener"/>
+    </projectListeners>
+
 </idea-plugin>
