@@ -9,7 +9,6 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.psi.xml.XmlFile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.yaoqiang.intellij.lang.BPMNFileType;
 
 public class BPMNStructureViewBuilderProvider implements XmlStructureViewBuilderProvider {
 
