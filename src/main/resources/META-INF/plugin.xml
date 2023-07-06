@@ -29,7 +29,11 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="BPMN" implementationClass="org.yaoqiang.intellij.lang.BPMNFileType" fieldName="INSTANCE" language="BPMN" extensions="bpmn"/>
+
         <lang.syntaxHighlighterFactory language="BPMN" implementationClass="com.intellij.lang.xml.XmlSyntaxHighlighterFactory"/>
+
+        <lang.psiStructureViewFactory language="BPMN" implementationClass="com.intellij.lang.xml.XmlStructureViewBuilderFactory"/>
+        <xmlStructureViewBuilderProvider implementation="org.yaoqiang.intellij.lang.BPMNStructureViewBuilderProvider"/>
 
     </extensions>
 

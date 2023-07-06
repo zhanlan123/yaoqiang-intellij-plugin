@@ -1,6 +1,7 @@
 package org.yaoqiang.intellij.lang;
 
 import com.intellij.icons.AllIcons;
+import com.intellij.ide.highlighter.DomSupportEnabled;
 import com.intellij.ide.highlighter.XmlLikeFileType;
 import org.jetbrains.annotations.NotNull;
 
