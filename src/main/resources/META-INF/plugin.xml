@@ -40,6 +40,13 @@
         <toolWindow id="BPMN Palette" secondary="false" icon="AllIcons.Toolwindows.ToolWindowPalette" anchor="right"
                     factoryClass="org.yaoqiang.intellij.toolwindow.PaletteToolWindowFactory"/>
 
+        <applicationConfigurable groupId="editor" id="preferences.BPMNEditor"
+                                 instance="org.yaoqiang.intellij.options.BPMNFileEditorMainConfigurable"/>
+        <applicationConfigurable id="BPMNEditor.Diagram" parentId="preferences.BPMNEditor"
+                                 instance="org.yaoqiang.intellij.options.BPMNFileEditorDiagramConfigurable"/>
+        <applicationConfigurable id="BPMNEditor.ElementStyles" parentId="preferences.BPMNEditor"
+                                 instance="org.yaoqiang.intellij.options.BPMNFileEditorElementStylesConfigurable"/>
+
     </extensions>
 
     <actions>

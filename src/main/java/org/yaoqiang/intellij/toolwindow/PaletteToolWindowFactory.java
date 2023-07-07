@@ -27,7 +27,7 @@ public class PaletteToolWindowFactory implements ToolWindowFactory, DumbAware {
 
     @Override
     public void init(@NotNull ToolWindow toolWindow) {
-        toolWindow.setAvailable(true, null);
+        toolWindow.setAvailable(true);
     }
 
 }
