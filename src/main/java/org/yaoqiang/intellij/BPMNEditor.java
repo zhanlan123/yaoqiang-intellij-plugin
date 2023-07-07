@@ -143,13 +143,14 @@ public class BPMNEditor {
         }
 
         public  void appClosing() {
-            String colorString = "";
-            for (Color c : Constants.LAST_FILLCOLOR) {
-                colorString += mxUtils.hexString(c) + ",";
-            }
-            Constants.SETTINGS.setProperty("lastFillColor", colorString);
-
-            Utils.saveASAFProperties(ASAF.getSettings());
+            //TODO: save ASAF settings
+//            String colorString = "";
+//            for (Color c : Constants.LAST_FILLCOLOR) {
+//                colorString += mxUtils.hexString(c) + ",";
+//            }
+//            Constants.SETTINGS.setProperty("lastFillColor", colorString);
+//
+//            Utils.saveASAFProperties(ASAF.getSettings());
             saveYaoqiangConfigureFile();
         }
     }
