@@ -36,6 +36,10 @@
 
         <lang.psiStructureViewFactory language="BPMN" implementationClass="com.intellij.lang.xml.XmlStructureViewBuilderFactory"/>
         <xmlStructureViewBuilderProvider implementation="org.yaoqiang.intellij.lang.BPMNStructureViewBuilderProvider"/>
+
+        <toolWindow id="BPMN Palette" secondary="false" icon="AllIcons.Toolwindows.ToolWindowPalette" anchor="right"
+                    factoryClass="org.yaoqiang.intellij.toolwindow.PaletteToolWindowFactory"/>
+
     </extensions>
 
     <actions>
