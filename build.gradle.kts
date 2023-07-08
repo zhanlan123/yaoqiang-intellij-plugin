@@ -1,11 +1,11 @@
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.8.21"
-    id("org.jetbrains.intellij") version "1.14.2"
+    id("org.jetbrains.intellij") version "1.15.0"
 }
 
 group = "org.yaoqiang"
-version = "3.0.0"
+version = "3.0.1"
 
 repositories {
     mavenCentral()

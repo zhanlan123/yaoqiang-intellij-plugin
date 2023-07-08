@@ -58,7 +58,7 @@ public class BPMNEditor {
             System.setProperty("asaf.app.name", "plugin");
             ASAF.setVersion("3.0.0 (Intellij Plugin)");
 
-            String currentLanguage = ASAF.getSetting(ASAF.KEY_LANGUAGE, ASAF.DEFAULT_LANGUAGE);
+            String currentLanguage = ASAFConfig.getSetting(ASAF.KEY_LANGUAGE, ASAF.DEFAULT_LANGUAGE);
             ASAF.setLocale(new Locale(currentLanguage));
             ResourceMap.add("org.yaoqiang.asaf.resources.locale");
             ResourceMap.add("org.yaoqiang.graph.resources.graph");
@@ -143,14 +143,12 @@ public class BPMNEditor {
         }
 
         public  void appClosing() {
-            //TODO: save ASAF settings
-//            String colorString = "";
-//            for (Color c : Constants.LAST_FILLCOLOR) {
-//                colorString += mxUtils.hexString(c) + ",";
-//            }
-//            Constants.SETTINGS.setProperty("lastFillColor", colorString);
-//
-//            Utils.saveASAFProperties(ASAF.getSettings());
+            String colorString = "";
+            for (Color c : Constants.LAST_FILLCOLOR) {
+                colorString += mxUtils.hexString(c) + ",";
+            }
+            Constants.SETTINGS.setProperty("lastFillColor", colorString);
+            Utils.saveASAFProperties(ASAFConfig.getSettings());
             saveYaoqiangConfigureFile();
         }
     }

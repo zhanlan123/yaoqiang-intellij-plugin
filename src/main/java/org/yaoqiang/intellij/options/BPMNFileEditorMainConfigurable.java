@@ -5,6 +5,7 @@ import com.intellij.openapi.options.ConfigurationException;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.Nullable;
 import org.yaoqiang.asaf.ASAF;
+import org.yaoqiang.asaf.ASAFConfig;
 import org.yaoqiang.asaf.ResourceMap;
 import org.yaoqiang.asaf.StaticActionMap;
 import org.yaoqiang.asaf.panel.ComboItem;
@@ -44,7 +45,7 @@ public class BPMNFileEditorMainConfigurable implements Configurable {
 
         Map<String, String> locales = new HashMap<String, String>();
 
-        for (String l : ASAF.SUPPORT_LANGUAGES) {
+        for (String l : ASAFConfig.SUPPORT_LANGUAGES) {
             Locale locale = null;
             int index = l.indexOf('_');
             if (index > 0) {
@@ -56,7 +57,7 @@ public class BPMNFileEditorMainConfigurable implements Configurable {
         }
 
         languagePanel = new ComboPanel(new PanelContainer(), null, "language", locales.entrySet(), 80, false, false, true);
-        String currentLanguage = ASAF.getSetting(ASAF.KEY_LANGUAGE, ASAF.DEFAULT_LANGUAGE);
+        String currentLanguage = ASAFConfig.getSetting(ASAF.KEY_LANGUAGE, ASAF.DEFAULT_LANGUAGE);
         languagePanel.setSelectedItem(new ComboItem(new AbstractMap.SimpleEntry<String, String>(currentLanguage, locales.get(currentLanguage))));
         languagePanel.addActionListener(listener);
         JPanel topPanel = new JPanel();
@@ -72,10 +73,10 @@ public class BPMNFileEditorMainConfigurable implements Configurable {
         @Override
         public void actionPerformed(ActionEvent e) {
             Map.Entry<String, String> selected = (Map.Entry<String, String>) ((ComboItem) languagePanel.getSelectedItem()).getObject();
-            if (selected.getKey().equals(ASAF.getSetting(ASAF.KEY_LANGUAGE, ASAF.DEFAULT_LANGUAGE))) {
+            if (selected.getKey().equals(ASAFConfig.getSetting(ASAF.KEY_LANGUAGE, ASAF.DEFAULT_LANGUAGE))) {
                 return;
             }
-            ASAF.setSetting(ASAF.KEY_LANGUAGE, selected.getKey());
+            ASAFConfig.setSetting(ASAF.KEY_LANGUAGE, selected.getKey());
             String language = selected.getKey();
             int index = language.indexOf('_');
             Locale locale = null;
